@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            margin: 0;
+            padding: 0;
+            background-color: #880808
+        }
+        .main{
+            padding: 15px;
+            max-width: 498px;
+            margin: 100px auto;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgb(255, 255, 255);
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .redirection, form {
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .redirection a, input[type="submit"] {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #009E60;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+        }
+
+        .redirection a:hover, input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+<div class="main">
+<h2>Welcome to the Event Management System</h2>
+
+
+<div class="container">
+
+    <div class="redirection" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'') or hasRole(''ROLE_CLUB'')')}">
+        <a href="/addevent.html">Add Event</a>
+    </div>
+
+ 
+    <div class="redirection">
+        <a href="/getclubevent.html">Get Club Event</a>
+    </div>
+
+    <div class="redirection">
+        <a href="/geteventbydate.html">Get Event By Date</a>
+    </div>
+
+  
+    <form action="showEvents" method="get">
+        <input type="submit" value="Get all Events">
+    </form>
+
+
+    <form action="logout" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+</div>
+
+</body>
+</html>

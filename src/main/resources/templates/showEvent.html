@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #880808;
+            color: #000000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #D6EBF2;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px 0px rgb(255, 255, 255);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #D6EBF2;
+            color: #000000;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .Link {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .Link:hover {
+            text-decoration: underline;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>All Events</h2>
+    <hr>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Event ID</th>
+                    <th>Club Name</th>
+                    <th>Event Name</th>
+                    <th>Event Description</th>
+                    <th>Date of Event</th>
+                    <th>Time of Event</th>
+                    <th>Venue</th>
+                    <th>Registration Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="event : ${result}">
+                    <td th:text="${event.eventId} ?: ''"></td>
+                    <td th:text="${event.clubName} ?: ''"></td>
+                    <td th:text="${event.eventName} ?: ''"></td>
+                    <td th:text="${event.eventDescription} ?: ''"></td>
+                    <td th:text="${event.eventDate} ?: ''"></td>
+                    <td th:text="${event.eventTime} ?: ''"></td>
+                    <td th:text="${event.eventVenue} ?: ''"></td>
+                    <td>
+                        <span th:if="${event.registrationLink != null}">
+                            <a th:href="${event.registrationLink}" class="Link">Link</a>
+                        </span>
+                        <span th:unless="${event.registrationLink != null}">N/A</span>
+                    </td>
+                </tr>
+                <tr th:if="${result == null or #lists.isEmpty(result)}">
+                    <td colspan="8" class="text-center">No events found</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

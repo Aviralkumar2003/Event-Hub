@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Added</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .result {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="result">
+        <h2>Event Added Successfully</h2>
+        <p>Event ID: <span th:text="${e.eventId}"></span></p>
+        <p>Club Name: <span th:text="${e.clubName}"></span></p>
+        <p>Event Name: <span th:text="${e.eventName}"></span></p>
+        <p>Event Description: <span th:text="${e.eventDescription}"></span></p>
+        <p>Event Date: <span th:text="${e.eventDate}"></span></p>
+        <p>Event Time: <span th:text="${e.eventTime}"></span></p>
+        <p>Event Venue: <span th:text="${e.eventVenue}"></span></p>
+        <p>Link : <span th:text="${e.registrationLink}"></span></p>
+    </div>
+</body>
+</html>
